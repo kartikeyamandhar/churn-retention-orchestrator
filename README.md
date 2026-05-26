@@ -50,6 +50,31 @@ Streamlit.
 bash setup.sh
 ```
 
-## Status
+## Progress
 
-In development.
+**Phase 1 — data-generating process (complete).** The project rests on a known
+ground truth, so it begins by authoring the synthetic population rather than by
+fitting a model. Customers follow a Telco-style covariate schema and churn in
+discrete monthly periods (KKBox-style) under a logistic hazard whose baseline is
+high during onboarding and decays with tenure. Treatment effects are
+stage-conditional and encoded as ground truth: an onboarding-activation save is
+worth far more than a late-stage win-back, both because it acts when the churn
+hazard is highest and because a win-back save leaves usage collapsed and
+re-churns quickly.
+
+Under common random numbers, the generator emits:
+
+- a realized (no-intervention) panel — the only data the hazard model sees;
+- a randomized-assignment experiment — the honest training substrate for uplift,
+  and the only data containing treatment variation;
+- per-customer analytic counterfactuals (expected retained months, survival
+  probability, true incremental save) plus full survival curves — held out as
+  ground truth for validation and policy scoring, never a model input.
+
+A calibration check confirms the early-tenure hazard spike (hazard falls from
+~0.12 to ~0.01 over the first months), and the headline asymmetry is present in
+the ground truth: an onboarding save buys ~2.9 expected retained months across
+the base, a win-back save ~0.7 even among customers already in attrition.
+
+Remaining: hazard model (2), uplift model (3), economic layer (4), policy
+comparison (5), agentic wrapper (6), dashboard and writeup (7).
