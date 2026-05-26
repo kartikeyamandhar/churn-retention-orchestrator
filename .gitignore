@@ -1,0 +1,14 @@
+# environment
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# data and exploration artifacts
+data/
+notebooks/
+
+# all markdown is untracked except README.md
+# this keeps CLAUDE.md and phases/*.md local and out of the remote
+*.md
+!README.md

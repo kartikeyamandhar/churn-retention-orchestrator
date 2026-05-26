@@ -1,0 +1,27 @@
+# core
+numpy
+pandas
+scipy
+pyarrow
+
+# survival / ml
+lifelines
+scikit-learn
+
+# uplift; if econml fails to build, Phase 3 falls back to a sklearn two-model learner
+econml
+
+# agentic
+langgraph
+langchain
+langchain-openai
+langsmith
+
+# app
+streamlit
+plotly
+matplotlib
+
+# tooling
+pytest
+python-dotenv
